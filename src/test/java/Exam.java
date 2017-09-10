@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 /**
  * Created by Laurie on 28 May 2017.
  */
@@ -97,4 +99,39 @@ public class Exam {
         Assert.assertEquals(21, Triangle.countStar(6));
         Assert.assertEquals(28, Triangle.countStar(7));
     }
+
+    @Test
+    public void testWordMultiple(){
+       /* Given an array of strings, return a Map<String, Boolean> where each different string is a key and its value is true if that string appears 2 or more times in the array.
+
+        wordMultiple(["a", "b", "a", "c", "b"]) ? {"a": true, "b": true, "c": false}
+        wordMultiple(["c", "b", "a"]) ? {"a": false, "b": false, "c": false}
+        wordMultiple(["c", "c", "c", "c"]) ? {"c": true}*/
+
+
+        Assert.assertEquals(new HashMap<String, Boolean>(){{put("a", true); put("b", true); put("c",false);}}, WordMultiple.wordMultiple(new String[] {"a", "b", "a", "c", "b"}));
+        Assert.assertEquals(new HashMap<String, Boolean>(){{put("a", false); put("b", false); put("c",false);}}, WordMultiple.wordMultiple(new String[] {"c", "b", "a"}));
+        Assert.assertEquals(new HashMap<String, Boolean>(){{put("c",true);}}, WordMultiple.wordMultiple(new String[] {"c", "c", "c", "c", "c"}));
+        Assert.assertEquals(new HashMap<String, Boolean>(), WordMultiple.wordMultiple(new String[] {}));
+        Assert.assertEquals(new HashMap<String, Boolean>(){{put("and",false); put("this", true);}}, WordMultiple.wordMultiple(new String[] {"this", "and", "this"}));
+        Assert.assertEquals(new HashMap<String, Boolean>(){{put("a",true); put("b", true); put("d", true); put("e", false); put("x", false); put("z", true);}}, WordMultiple.wordMultiple(new String[] {"d", "a", "e", "d", "a", "d", "b", "b", "z", "a", "a", "b", "z", "x"}));
+    }
+
+    @Test
+    public void testScores100(){
+
+        /*Given an array of scores, return true if there are scores of 100 next to each other in the array. The array length will be at least 2.
+
+        scores100([1, 100, 100]) ? true
+        scores100([1, 100, 99, 100]) ? false
+        scores100([100, 1, 100, 100]) ? true*/
+
+        Assert.assertEquals(true, Scores100.scores100(new int[]{1, 100, 100}));
+        Assert.assertEquals(false, Scores100.scores100(new int[]{1, 100, 99, 100}));
+        Assert.assertEquals(true, Scores100.scores100(new int[]{100, 1, 100, 100}));
+        Assert.assertEquals(false, Scores100.scores100(new int[]{100, 1, 100, 1}));
+        Assert.assertEquals(false, Scores100.scores100(new int[]{1, 2, 3, 4, 5}));
+        Assert.assertEquals(false, Scores100.scores100(new int[]{1, 2, 100, 4, 5}));
+    }
+
 }
